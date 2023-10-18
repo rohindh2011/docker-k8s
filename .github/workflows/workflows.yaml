@@ -3,7 +3,7 @@ name: cicd
 on: 
   push: 
     branches: 
-      - master
+      - master 
   workflow_dispatch: 
 
 jobs: 
@@ -13,16 +13,19 @@ jobs:
     steps: 
     - name: checkout
       uses: actions/checkout@v4
-
+      
     - name: Lint Code Base
       uses: super-linter/super-linter@v4
       env:
         VALIDATE_ALL_CODEBASE: false
         DEFAULT_BRANCH: main
-        GITHUB_TOKEN: ${{ secrets.SANDEEP_TOKEN }}
-
+        GITHUB_TOKEN: ${{ secrets.JILA_TOKEN }}  
+        
     - name: setup java
       uses: actions/setup-java@v3
       with:
-        distribution: 'temurin' # See 'Supported distributions' for available options
+        distribution: 'temurin'
         java-version: '11'
+        
+    - name: build the code
+      run: mvn clean package
