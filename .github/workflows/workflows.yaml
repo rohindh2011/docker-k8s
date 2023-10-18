@@ -3,9 +3,8 @@ name: cicd
 on: 
   push: 
     branches: 
-      - master
+      - master 
   workflow_dispatch: 
-
 
 jobs: 
   cicd: 
@@ -19,4 +18,9 @@ jobs:
       env:
         VALIDATE_ALL_CODEBASE: false
         DEFAULT_BRANCH: main
-        GITHUB_TOKEN: ${{ secrets.ROHINDH_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.JILA_TOKEN }}  
+    - name: setup java
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '11'
